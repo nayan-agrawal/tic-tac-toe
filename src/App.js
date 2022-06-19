@@ -90,24 +90,25 @@ const App = () => {
 
   return (
     <Container className="p-5">
-      <ToastContainer position="bottom-center" />
+      <h1 className="text-center text-uppercase text-color-white">Tic Tac Toe</h1>
+      <ToastContainer position="top-right" />
       <Row>
         <Col md={6} className="offset-md-3">
           {winMessage ? (
             <div className="my-3">
-              <h1 className="text-primary text-uppercase text-center">{winMessage}</h1>
+              <h1 className="text-uppercase text-center" style={{ color: "#F15412" }}>{winMessage}</h1>
               <Button color="success" block onClick={reloadGame}>
                 Reload Game
               </Button>
             </div>
           ) : (
-            <h1 className="text-center text-warning">
+            <h5 className="text-center text-color-white py-2">
               {isCross ? "Cross" : "Circle"} turns
-            </h1>
+            </h5>
           )}
           <div className="grid">
             {itemArray.map((item, index) => (
-              <Card onClick={() => changeItem(index)} color="warning">
+              <Card onClick={() => changeItem(index)} classNames='card'>
                 <CardBody className="box">
                   <Icons name={item} />
                 </CardBody>

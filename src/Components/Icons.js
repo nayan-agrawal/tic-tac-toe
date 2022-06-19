@@ -7,7 +7,7 @@ const Icons = ({ name }) => {
         case "circle":
             return <FaRegCircle className="icon" />
         default:
-            return <FaPen className="icon" />
+            return ""
     }
 }
 

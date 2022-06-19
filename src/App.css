@@ -5,7 +5,7 @@ body {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 15px;
+  grid-gap: 22px;
 }
 
 .box {
@@ -17,6 +17,29 @@ body {
 }
 
 .icon {
-  font-size: 30px;
+  font-size: 34px;
   color: #000;
+  animation: zoom 0.5s ease-in forwards;  
+}
+
+@keyframes zoom {
+  0% {
+    opacity: 0;
+    transform: scale(1, 1);
+  } 
+  100% {
+    opacity: 1;
+    transform: scale(1.5,1.5);
+  }
+}
+
+.card {
+  height: 130px;
+  background-color: #34B3F1;
+  cursor: pointer !important;
+}
+
+.text-color-white {
+  color: #EEEEEE !important;
+  letter-spacing: 2px;
 }
