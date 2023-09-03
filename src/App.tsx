@@ -36,7 +36,7 @@ const BoardLayout = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 3%;
 `;
 
 function App() {
