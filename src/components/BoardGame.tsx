@@ -1,10 +1,11 @@
-import React, {Fragment, useState} from "react";
-import {Box, Card, CardContent, Snackbar, Alert as MuiAlert, Typography, Stack} from "@mui/material"
+import React, {Dispatch, Fragment, SetStateAction, useState} from "react";
+import {Box, Card, CardContent, Snackbar, Alert as MuiAlert, Typography, Stack, Button} from "@mui/material"
 import Icon from "./common/Icon";
 import styled from "@emotion/styled";
 import {AlertProps} from '@mui/material/Alert';
 import {WinnerDialog} from "./common/Dialogs";
 import ConfettiExplosion from 'react-confetti-explosion';
+import Swal from 'sweetalert2'
 
 const itemArray: any[] = new Array(9).fill("empty");
 
@@ -20,12 +21,23 @@ const BoardLayout = styled(Box)`
 `;
 
 const PlayBox = styled(CardContent)`
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+`;
+
+const MenuButton = styled(Button)`
+  padding: 0.5rem 3rem;
+  border-radius: 2rem;
+  background-color: #ffffff;
+  color: #4b56af;
+
+  &:hover {
+    background-color: #f3f3f3;
+  }
 `;
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -35,7 +47,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function BoardGame(): JSX.Element {
+function BoardGame(props: {setShowMenu: Dispatch<SetStateAction<String | null>>}): JSX.Element {
     const [isCross, setIsCross] = useState<boolean>(false);
     const [winMessage, setWinMessage] = useState<string | null>("");
     const [open, setOpen] = useState<boolean>(false);
@@ -134,22 +146,42 @@ function BoardGame(): JSX.Element {
         }
     };
 
+    const handleExit = async () => {
+        let result = await Swal.fire({
+            icon: 'warning',
+            title: 'Exit Game',
+            text: 'Are you sure you want to exit the game?',
+            showConfirmButton: true,
+            showCancelButton: true,
+        });
+        if (!result.value) return;
+        window.localStorage.setItem("settings", JSON.stringify({type: "", level: "", side: ""}));
+        props.setShowMenu("");
+    }
+
     return <Fragment>
-        <OuterBoard>
-            <Typography variant="h6" sx={{textAlign: "center"}} mb={2}>{isCross ? "Cross" : "Circle"} turns</Typography>
-            <BoardLayout>
-                {itemArray.map((item, index) => (
-                    <Card onClick={() => changeItem(index)} key={index} elevation={0}>
-                        <PlayBox sx={{
-                            borderRight: !borderRightIndexes.includes(index) ? "2px solid #c4c4c4" : "",
-                            borderBottom: !borderBottomIndexes.includes(index) ? "2px solid #c4c4c4" : ""
-                        }}>
-                            <Icon name={item}/>
-                        </PlayBox>
-                    </Card>
-                ))}
-            </BoardLayout>
-        </OuterBoard>
+        <Stack flexDirection="column" alignItems="center" spacing={4} mt={4}>
+            <Stack flexDirection="row-reverse" alignItems="center" justifyContent="space-between" sx={{ width: "100%" }}>
+                <MenuButton variant="contained" onClick={handleExit}>
+                    Exit
+                </MenuButton>
+            </Stack>
+            <OuterBoard>
+                <Typography variant="h6" sx={{textAlign: "center", marginTop: 0}} mb={2}>{isCross ? "Cross" : "Circle"} turns</Typography>
+                <BoardLayout>
+                    {itemArray.map((item, index) => (
+                        <Card onClick={() => changeItem(index)} key={index} elevation={0}>
+                            <PlayBox sx={{
+                                borderRight: !borderRightIndexes.includes(index) ? "2px solid #c4c4c4" : "",
+                                borderBottom: !borderBottomIndexes.includes(index) ? "2px solid #c4c4c4" : ""
+                            }}>
+                                <Icon name={item}/>
+                            </PlayBox>
+                        </Card>
+                    ))}
+                </BoardLayout>
+            </OuterBoard>
+        </Stack>
 
         {winnerDialog &&
             <WinnerDialog open={winnerDialog} handleClose={() => setWinnerDialog(false)} content={winMessage}

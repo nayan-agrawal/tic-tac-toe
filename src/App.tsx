@@ -8,35 +8,20 @@ import BoardGame from "./components/BoardGame";
 import {Settings} from "./Utils/Interfaces";
 import Loader from "./components/common/Loader";
 import {Box} from "@mui/material";
+import "./index.css";
 
-const AppLayout = styled.div`
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-`;
-
-const GameLayout = styled.div`
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
+const GameLayout = styled(Box)`
   background-image: linear-gradient(to bottom, #6c7cfc, #04ccfc);
+  height: 100vh;
+  padding: 2rem 0;
+  background-size: cover;
 `;
 
 const BoardLayout = styled(Box)`
-  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 3%;
 `;
 
 function App() {
@@ -71,18 +56,16 @@ function App() {
     }, []);
 
     return (
-        <AppLayout>
-            <GameLayout>
-                <Header/>
-                {loading && <Loader/>}
-                {!loading && <BoardLayout>
-                    {!showMenu && <Menu setShowMenu={setShowMenu}/>}
-                    {showMenu && showMenu === "level" && <SelectLevel setShowMenu={setShowMenu}/>}
-                    {showMenu && showMenu === "type" && <SideSelect setShowMenu={setShowMenu}/>}
-                    {showMenu && showMenu === "side" && <BoardGame/>}
-                </BoardLayout>}
-            </GameLayout>
-        </AppLayout>
+        <GameLayout>
+            <Header/>
+            {loading && <Loader/>}
+            {!loading && <BoardLayout>
+                {!showMenu && <Menu setShowMenu={setShowMenu}/>}
+                {showMenu && showMenu === "level" && <SelectLevel setShowMenu={setShowMenu}/>}
+                {showMenu && showMenu === "type" && <SideSelect setShowMenu={setShowMenu}/>}
+                {showMenu && showMenu === "side" && <BoardGame setShowMenu={setShowMenu}/>}
+            </BoardLayout>}
+        </GameLayout>
     );
 }
 
