@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useEffect} from "react";
+import {Dispatch, SetStateAction} from "react";
 import {Button, Stack} from "@mui/material";
 import styled from "@emotion/styled";
 import {Settings} from "../Utils/Interfaces";

@@ -10,7 +10,7 @@ const HeaderBox = styled.div`
 
 function Header(): JSX.Element {
     return <HeaderBox>
-        <img src={"/assets/img/logo.png"} width="20%"/>
+        <img src={"/assets/img/logo.png"} width="20%" alt="tic tac toe logo" />
     </HeaderBox>
 }
 

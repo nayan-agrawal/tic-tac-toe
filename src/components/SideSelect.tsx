@@ -2,8 +2,7 @@ import {Box, Stack, Typography} from "@mui/material";
 import styled from "@emotion/styled";
 import CloseIcon from '@mui/icons-material/Close';
 import PanoramaFishEyeIcon from '@mui/icons-material/PanoramaFishEye';
-import {Settings} from "../Utils/Interfaces";
-import {Dispatch, SetStateAction, useEffect} from "react";
+import {Dispatch, SetStateAction} from "react";
 
 const StyledButton = styled(Box)`
   width: 6rem;
@@ -42,8 +41,7 @@ function SideSelect(props: {setShowMenu: Dispatch<SetStateAction<String | null>>
         if (!value) return;
         let data: string | null = window.localStorage.getItem("settings");
         if (data) {
-            let settings: Settings = JSON.parse(data);
-            window.localStorage.setItem("settings", JSON.stringify({type: settings.type, level: settings.level, side: value}));
+            window.localStorage.setItem("settings", JSON.stringify({side: value}));
             props.setShowMenu("side");
         }
     }

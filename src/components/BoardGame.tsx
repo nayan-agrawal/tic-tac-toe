@@ -146,11 +146,11 @@ function BoardGame(props: {setShowMenu: Dispatch<SetStateAction<String | null>>}
         }
     };
 
-    const handleExit = async () => {
+    const handleReload = async () => {
         let result = await Swal.fire({
             icon: 'warning',
-            title: 'Exit Game',
-            text: 'Are you sure you want to exit the game?',
+            title: 'Reload Game',
+            text: 'Are you sure you want to reload the game?',
             showConfirmButton: true,
             showCancelButton: true,
         });
@@ -162,8 +162,8 @@ function BoardGame(props: {setShowMenu: Dispatch<SetStateAction<String | null>>}
     return <Fragment>
         <Stack flexDirection="column" alignItems="center" spacing={4} mt={4}>
             <Stack flexDirection="row-reverse" alignItems="center" justifyContent="space-between" sx={{ width: "100%" }}>
-                <MenuButton variant="contained" onClick={handleExit}>
-                    Exit
+                <MenuButton variant="contained" onClick={handleReload}>
+                    Reload
                 </MenuButton>
             </Stack>
             <OuterBoard>

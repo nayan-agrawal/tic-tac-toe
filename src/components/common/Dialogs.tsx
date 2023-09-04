@@ -12,7 +12,7 @@ export const WinnerDialog = (props: {
                 <Typography variant="h4" mb={4}>
                     Congratulations!!
                 </Typography>
-                <img src="/assets/img/congratulations.gif" width={"60%"}/>
+                <img src="/assets/img/congratulations.gif" width={"60%"} alt="winner animation" />
                 <Typography variant="h5" sx={{ textTransform: "capitalize" }}>
                     {props.content}
                 </Typography>
