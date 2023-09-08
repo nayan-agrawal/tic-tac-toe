@@ -12,7 +12,7 @@ const StyledButton = styled(Box)`
   justify-content: center;
   border-radius: 50%;
   color: #4b56af;
-  
+
   &:hover {
     cursor: pointer;
   }
@@ -35,15 +35,12 @@ const CustomPanoramaFishEyeIcon = styled(PanoramaFishEyeIcon)`
   stroke-width: 0.2rem;
 `;
 
-function SideSelect(props: {setShowMenu: Dispatch<SetStateAction<String | null>>}): JSX.Element {
+function SideSelect(props: { setShowMenu: Dispatch<SetStateAction<String | null>> }): JSX.Element {
 
     const handleOnClick = (value: string) => {
         if (!value) return;
-        let data: string | null = window.localStorage.getItem("settings");
-        if (data) {
-            window.localStorage.setItem("settings", JSON.stringify({side: value}));
-            props.setShowMenu("side");
-        }
+        window.localStorage.setItem("settings", JSON.stringify({side: value}));
+        props.setShowMenu("side");
     }
 
     return <Stack flexDirection="row" justifyContent="center">

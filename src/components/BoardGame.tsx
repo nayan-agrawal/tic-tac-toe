@@ -155,7 +155,8 @@ function BoardGame(props: {setShowMenu: Dispatch<SetStateAction<String | null>>}
             showCancelButton: true,
         });
         if (!result.value) return;
-        window.localStorage.setItem("settings", JSON.stringify({type: "", level: "", side: ""}));
+        window.localStorage.setItem("settings", JSON.stringify({side: ""}));
+        reloadGame();
         props.setShowMenu("");
     }
 
