@@ -50,9 +50,9 @@ function App() {
         <GameLayout>
             <Header/>
             {loading && <Loader/>}
-            {!loading && <Grid container px={4}>
-                <Grid item xs={0} md={6} lg={6} xl={6} sx={{ textAlign: "right" }}>
-                    <img src="/assets/img/astranouts.png" width={"70%"} alt="astranout" />
+            {!loading && <Grid container px={4} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Grid item xs={0} sm={0} md={6} lg={6} xl={6} sx={{ textAlign: "center", display: { xs: "none", md: "block", sm: "block", lg: "block" } }}>
+                    <img src="/assets/img/astranouts.png" width={"60%"} alt="astranout" />
                 </Grid>
                 <Grid item xs={12} md={6} lg={6} xl={6}>
                     <BoardLayout>

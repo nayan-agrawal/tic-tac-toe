@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const HeaderBox = styled.div`
   width: 100%;
@@ -9,8 +11,12 @@ const HeaderBox = styled.div`
 `;
 
 function Header(): JSX.Element {
+    const theme = useTheme();
+    const isSm = useMediaQuery(theme.breakpoints.up('sm'));
+    const isXs = useMediaQuery(theme.breakpoints.up('xs'));
+
     return <HeaderBox>
-        <img src={"/assets/img/logo.png"} width="20%" alt="tic tac toe logo" />
+        <img src={"/assets/img/logo.png"} width={isSm ? "25%" : isXs ? "60%" : "25%"} alt="tic tac toe logo" />
     </HeaderBox>
 }
 

@@ -11,7 +11,7 @@ const itemArray: any[] = new Array(9).fill("empty");
 
 const OuterBoard = styled(Box)`
   background-color: #fff;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: rgba(50, 50, 93, 0.25) 0 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 `;
 
@@ -21,8 +21,8 @@ const BoardLayout = styled(Box)`
 `;
 
 const PlayBox = styled(CardContent)`
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
